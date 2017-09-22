@@ -57,3 +57,14 @@ typings/
 # dotenv environment variables file
 .env
 
+# Deployment folder content
+deploy/**
+
+# Image content
+app/assets/**
+
+# CSS vendor files
+app/css/vendor/**
+
+# JS vendor files
+app/js/lib/vendor/**

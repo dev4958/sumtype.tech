@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <% if (process.env.NODE_ENV === 'production') { %>
+      <% for (var index in htmlWebpackPlugin.files.css) {
+        let fs = require('fs');
+        let childProcess = require('child_process');
+        let procedure = `cat ${webpackConfig.output.path}/${htmlWebpackPlugin.files.css[index].substr(0, htmlWebpackPlugin.files.css[index].indexOf('?'))} | openssl dgst -sha512 -binary | openssl enc -base64 -A`;
+        let sha512value = 'none';
+        try {
+          fs.accessSync(`${webpackConfig.output.path}/${htmlWebpackPlugin.files.css[index].substr(0, htmlWebpackPlugin.files.css[index].indexOf('?'))}`, fs.constants.R_OK);
+          sha512value = childProcess.execSync(procedure, (error, stdout, stderr) => stdout);
+        } catch (e) {}
+        let href = htmlWebpackPlugin.files.css[index].substr(0, htmlWebpackPlugin.files.css[index].indexOf('?'));
+        let crossOrigin = webpackConfig.output.crossOriginLoading;
+      %>
+      <link rel="stylesheet" href="<%= href %>" integrity="sha512-<%= sha512value %>" crossorigin="<%= crossOrigin %>">
+      <% } %>
+    <% } %>
+  </head>
+  <body>
+    <section id="app"></section>
+    <% if (process.env.NODE_ENV === 'production') { %>
+      <% for (var index in htmlWebpackPlugin.files.js) {
+        let fs = require('fs');
+        let childProcess = require('child_process');
+        let procedure = `cat ${webpackConfig.output.path}/${htmlWebpackPlugin.files.js[index].substr(2, htmlWebpackPlugin.files.js[index].indexOf('?') - 2)} | openssl dgst -sha512 -binary | openssl enc -base64 -A`;
+        let sha512value = 'none';
+        try {
+          fs.accessSync(`${webpackConfig.output.path}/${htmlWebpackPlugin.files.js[index].substr(2, htmlWebpackPlugin.files.js[index].indexOf('?') - 2)}`, fs.constants.R_OK);
+          sha512value = childProcess.execSync(procedure, (error, stdout, stderr) => stdout);
+        } catch (e) {}
+        let src = htmlWebpackPlugin.files.js[index];
+        let crossOrigin = webpackConfig.output.crossOriginLoading;
+      %>
+        <script src="<%= src %>" integrity="sha512-<%= sha512value %>" crossorigin="<%= crossOrigin %>"></script>
+      <% } %>
+    <% } %>
+  </body>
+</html>

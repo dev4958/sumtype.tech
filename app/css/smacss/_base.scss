@@ -1,0 +1,55 @@
+/*
+  Color Palette:
+    http://paletton.com/#uid=53z0s0kllll0A+L05pf+LhrZh05
+  Type Scale:
+    http://type-scale.com/ - 1.333 — Perfect Fourth
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:300|Roboto:100');
+
+html {
+  font-size: 1em;
+  background-color: #fff;
+  font-family: 'Raleway', sans-serif;
+}
+
+body {
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-size: 3.157em;
+}
+
+h2 {
+  font-size: 2.369em;
+}
+
+h3 {
+  font-size: 1.777em;
+}
+
+h4 {
+  font-size: 1.333em;
+}
+
+small, .font_small {
+  font-size: 0.75em;
+}
+
+a {
+  text-decoration: none;
+  transition: 0.25s all;
+}
+
+p {
+  margin-bottom: 0px;
+  font-size: 0.75em;
+}
+
+li {
+  margin-bottom: 1.3em;
+}

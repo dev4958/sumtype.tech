@@ -1,0 +1,47 @@
+.user-interface-container-table {
+  height: 100%;
+}
+.user-interface {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.user-interface-container {
+  vertical-align: top;
+}
+.github-repositories-header {
+  padding: 20px;
+}
+.github-repository-entry {
+  opacity: 0;
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 250px;
+  .repository-header {
+    display: inline;
+  }
+  .language-logo {
+    height: 20px;
+    float: left;
+    margin-right: 10px;
+  }
+  .php-logo {
+    height: 18px;
+  }
+  .github-repository-header {
+    margin-bottom: 10px;
+  }
+  .clone-link {
+    transition: 0.25s all;
+    cursor: pointer;
+    margin-left: 10px;
+    opacity: 0.2;
+    position: relative;
+    top: 2px;
+  }
+  .clone-text {
+    display: none;
+  }
+}
