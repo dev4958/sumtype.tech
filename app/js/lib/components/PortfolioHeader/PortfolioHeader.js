@@ -19,9 +19,7 @@ import GithubIcon from 'babel-loader!react-svg-loader!../../../../assets/images/
 import DockerIcon from 'babel-loader!react-svg-loader!../../../../assets/images/docker-icon.svg';
 import NpmIcon from 'babel-loader!react-svg-loader!../../../../assets/images/npm-icon.svg';
 import PhoneIcon from 'babel-loader!react-svg-loader!../../../../assets/images/phone-icon.svg';
-// ref={c => this.phoneIconDesktop = c}ref={c => this.phoneNumberDesktop = c}
 import EmailIcon from 'babel-loader!react-svg-loader!../../../../assets/images/email-icon.svg';
- // onMouseOver={this.showEmailAddressDesktop} onMouseOut={this.hideEmailAddressDesktop} ref={c => this.emailDesktop = c} ref={c => this.emailIconDesktop = c}ref={c => this.emailAddressDesktop = c}
 
 
 export default class PortfolioHeader extends React.Component {
