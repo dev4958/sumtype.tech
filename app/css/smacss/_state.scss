@@ -3,3 +3,21 @@
     opacity: 1;
   }
 }
+.user-data-header {
+  .icon-row {
+    svg:hover {
+      opacity: 0.5;
+    }
+  }
+  .no-cursor:hover {
+    cursor: none !important;
+  }
+}
+.phone-svg:hover {
+  width: 135px;
+  top: 2px;
+}
+.email-svg:hover {
+  width: 162px;
+  top: 2px;
+}

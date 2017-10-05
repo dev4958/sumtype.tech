@@ -11,6 +11,8 @@ html {
   font-size: 1em;
   background-color: #fff;
   font-family: 'Raleway', sans-serif;
+  overflow-x: hidden;
+  transition: 0.25s all;
 }
 
 body {

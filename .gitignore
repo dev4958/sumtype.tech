@@ -68,3 +68,6 @@ app/css/vendor/**
 
 # JS vendor files
 app/js/lib/vendor/**
+
+# Notes
+notes.txt

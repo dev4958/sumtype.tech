@@ -3,33 +3,43 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const extractTextPlugin = require('extract-text-webpack-plugin');
+const compressionPlugin = require('compression-webpack-plugin');
+const lodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const preloadWebpackPlugin = require('preload-webpack-plugin');
 const webpack = require('webpack');
 
 let production = process.env.NODE_ENV === 'production';
-let css = production ? extractTextPlugin.extract({
-  fallback: 'style-loader',
-  use: [{
-    loader: 'css-loader',
-    options: {
-      importLoaders: 1,
-      minimize: true
-    }
-  }, {
-    loader: 'postcss-loader',
-    options: {
-      plugins: function () {
-        return [
-          require('autoprefixer')
-        ];
+let css = production ? [{
+      loader: 'style-loader',
+      options: {
+        hmr: false,
+        convertToAbsoluteUrls: true,
+        attrs: {
+          defer: true
+        }
       }
-    }
-  }, {
-    loader: 'sass-loader',
-    options: {}
-  }]
-}) : [ 'style-loader', 'css-loader', 'sass-loader' ];
+    }, {
+      loader: 'css-loader',
+      options: {
+        importLoaders: 1,
+        minimize: true
+      }
+    }, {
+      loader: 'postcss-loader',
+      options: {
+        plugins: function () {
+          return [
+            require('autoprefixer')
+          ];
+        }
+      }
+    }, {
+      loader: 'sass-loader',
+      options: {}
+  }] : [ 'style-loader', 'css-loader', 'sass-loader' ];
+
 let appHtml = production ? new htmlWebpackPlugin({
-  title: 'Sumtype Technology',
+  title: 'Software Portfolio - James Mason | Sumtype.Tech',
   template: `${path.join(__dirname, 'app', 'index.ejs')}`,
   // favicon: `${path.join(__dirname, 'app', 'assets', 'images', 'favicon.ico')}`,
   xhtml: true,
@@ -47,7 +57,7 @@ let appHtml = production ? new htmlWebpackPlugin({
   },
   hash: true
 }) : new htmlWebpackPlugin({
-  title: 'Sumtype Technology',
+  title: 'Software Portfolio - James Mason | Sumtype.Tech',
   template: `${path.join(__dirname, 'app', 'index.ejs')}`,
   // favicon: `${path.join(__dirname, 'app', 'assets', 'images', 'favicon.ico')}`,
   hash: true
@@ -69,13 +79,19 @@ let webpackConfig = {
     }, {
       test: /\.js$/,
       exclude: /node_modules/,
-      use: 'babel-loader'
+      use: [{
+        loader: 'babel-loader',
+        options: {
+          plugins: ['lodash'],
+          presets: [['env', { 'modules': false, 'targets': { 'node': 4 } }]]
+        }
+      }]
     }, {
       test: /\.json$/,
       exclude: /node_modules/,
       use: 'json-loader'
     }, {
-      test: /\.(jpe?g|png|gif|svg)$/i,
+      test: /\.(jpe?g|png|gif)$/i,
       use: [ 'file-loader?name=assets/images/[name].[ext]', {
         loader: 'image-webpack-loader',
         query: {
@@ -107,14 +123,37 @@ let webpackConfig = {
     }]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production'),
+      },
+    }),
     appHtml,
     new extractTextPlugin({
       filename: 'style.min.css',
       disable: !production,
       allChunks: true
     }),
+    new preloadWebpackPlugin({
+      rel: 'preload',
+      as(entry) {
+        if (/\.css$/.test(entry)) return 'style';
+        if (/\.woff$/.test(entry)) return 'font';
+        if (/\.(jpe?g|png|gif|svg)$/i.test(entry)) return 'image';
+        return 'script';
+      }
+    }),
+    new lodashModuleReplacementPlugin,
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new compressionPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 0,
+      minRatio: 0.8
+    })
   ],
   devtool: 'source-map',
   devServer: {
