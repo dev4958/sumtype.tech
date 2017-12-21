@@ -41,7 +41,7 @@ let css = production ? [{
 let appHtml = production ? new htmlWebpackPlugin({
   title: 'Software Portfolio - James Mason',
   template: `${path.join(__dirname, 'app', 'index.ejs')}`,
-  // favicon: `${path.join(__dirname, 'app', 'assets', 'images', 'favicon.ico')}`,
+  favicon: `${path.join(__dirname, 'app', 'assets', 'images', 'favicon.ico')}`,
   xhtml: true,
   inject: false,
   minify: {
@@ -59,7 +59,7 @@ let appHtml = production ? new htmlWebpackPlugin({
 }) : new htmlWebpackPlugin({
   title: 'Software Portfolio - James Mason',
   template: `${path.join(__dirname, 'app', 'index.ejs')}`,
-  // favicon: `${path.join(__dirname, 'app', 'assets', 'images', 'favicon.ico')}`,
+  favicon: `${path.join(__dirname, 'app', 'assets', 'images', 'favicon.ico')}`,
   hash: true
 });
 

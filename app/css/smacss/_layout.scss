@@ -1,10 +1,14 @@
+.animated-icon-link {
+  position: absolute;
+}
 .user-interface-container-table {
   height: 100%;
-  // column-count: 5;
-  // column-rule: 1px solid #eee;
   max-width: 1700px;
   margin-left: auto;
   margin-right: auto;
+}
+.user-profile-container {
+  opacity: 0;
 }
 .user-interface {
   width: 100%;
@@ -14,8 +18,9 @@
 }
 .user-interface-container {
   vertical-align: top;
-  max-width: 300px;
-  column-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  left: -30px;
 }
 .user-data-header {
   width: 100%;
@@ -34,7 +39,6 @@
   }
   .profile-image {
     width: 150px;
-    border-radius: 50%;
     float: left;
   }
   .user-header {
@@ -42,6 +46,7 @@
     padding-bottom: 20px;
     h1 {
       margin-bottom: 15px;
+      margin-top: 25px;
     }
   }
   .icon-row {
@@ -52,24 +57,40 @@
       transition: 0.5s all;
       cursor: pointer;
     }
+    .phone-svg, .email-svg {
+      opacity: 0;
+    }
     .no-cursor {
       cursor: default !important;
     }
   }
 }
-.github-repositories-header {
+.github-repositories-header, .web-projects-header, .past-clients-header {
   padding: 20px;
 }
-.github-repositories-container {
+.github-repositories-container, .web-projects-container, .past-clients-container {
   position: relative;
   top: -40px;
 }
 .github-data-loader {
+  opacity: 0;
   position: relative;
-  top: -20px;
-  padding: 20px;
+  top: -38px;
+  left: -227px;
 }
-.github-repository-entry {
+.past-clients-data-loader {
+  opacity: 0;
+  position: relative;
+  top: -78px;
+  left: -30px;
+}
+.web-projects-data-loader {
+  opacity: 0;
+  position: relative;
+  top: -38px;
+  left: -283px;
+}
+.github-repository-entry, .web-project-entry, .past-client-entry {
   display: inline-block;
   opacity: 0;
   padding: 20px;
@@ -85,7 +106,7 @@
   .php-logo {
     height: 18px;
   }
-  .github-repository-header {
+  .github-repository-header, .web-project-header, .past-client-header {
     margin-bottom: 10px;
     white-space: nowrap;
   }
@@ -115,6 +136,15 @@
     display: none;
   }
 }
+.linkedin-icon-link, .github-icon-link, .npm-icon-link, .dockerhub-icon-link, .keybase-icon-link, .phone-svg, .email-svg {
+  opacity: 0;
+}
+.job-title {
+  opacity: 0;
+  div {
+    opacity: 0.5;
+  }
+}
 
 .phone-svg, .email-svg {
   width: 16px;
@@ -130,6 +160,44 @@
   left: -1px;
 }
 
+.github-repository-description {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.client-description, .project-description {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.client-service {
+  margin-left: 10px;
+}
+
+.project-contributions-header, .project-technology-header {
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+.project-service {
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.project-technology {
+  margin-left: 20px;
+}
+
+.web-entry-header {
+  a {
+    display: inline-flex;
+    h6 {
+      margin-left: 8px;
+      margin-top: 3px;
+    }
+  }
+}
 
 .desktop {
   display: block;
@@ -161,11 +229,17 @@
 }
 
 @media (max-width: 675px) {
+  .animated-icon-link {
+    position: relative;
+  }
   .user-interface-container-table {
-    // column-count: 1;
     max-width: 320px;
   }
-  .github-repositories-header {
+  .user-interface-container {
+    display: block;
+    left: 0px;
+  }
+  .github-repositories-header, .web-projects-header, .past-clients-header {
     padding: 10px !important;
   }
   .user-data-header {
@@ -180,6 +254,9 @@
     }
     td {
       text-align: center !important;
+    }
+    .user-name {
+      opacity: 0;
     }
     .profile-image {
       float: none !important;
@@ -199,7 +276,7 @@
       }
     }
   }
-  .github-repository-entry {
+  .github-repository-entry, .web-project-entry, .past-client-entry {
     padding: 10px !important;
     padding-top: 20px !important;
     padding-bottom: 20px !important;
@@ -212,8 +289,14 @@
   }
 }
 
+@media (max-width: 510px) {
+  .clone-link {
+    display: none;
+  }
+}
+
 @media (max-width: 327px) {
   .user-data-header {
-    height: 400px !important;
+    height: 380px !important;
   }
 }

@@ -16,3 +16,17 @@
   top: 1px;
   left: -1px;
 }
+#github-repositories-data, #web-projects-data, #past-clients-data {
+  opacity: 0;
+  max-width: 320px;
+  margin: 10px;
+}
+#portfolio-header {
+  position: relative;
+  left: -18px;
+}
+@media (max-width: 675px) {
+  #portfolio-header {
+    left: 0px;
+  }
+}

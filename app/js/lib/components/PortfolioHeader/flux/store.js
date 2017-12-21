@@ -35,7 +35,7 @@ class Store extends EventEmitter {
   // }
   setGithubUserData() {
     request
-      .get('http://localhost:4000/api/githubUserData')
+      .get('/api/data/github/user')
       .end((err, res) => {
         if (this.state.userData === null) this.state.userData = {};
         this.state.userData['github'] = res.body;

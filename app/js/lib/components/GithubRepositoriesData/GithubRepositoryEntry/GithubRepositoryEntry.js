@@ -70,8 +70,6 @@ export default class GithubRepositoryEntry extends React.Component {
       cloneUrl.setSelectionRange(0, cloneUrl.value.length);
       document.execCommand('copy');
       cloneUrl.remove();
-      // if (document.innerWidth >= 414) {
-      // }
       TweenMax.to(this.copiedTextSvg, 0.5, { opacity: 1 });
       TweenMax.to(this.copySvg, 0.5, { morphSVG: this.copiedSvg, onComplete: () => {
         TweenMax.to(this.copiedTextSvg, 1, { delay: 1.5, opacity: 0 })
@@ -97,7 +95,7 @@ export default class GithubRepositoryEntry extends React.Component {
             </svg>
             <input className="clone-text" ref={c => this.repositoryCloneUrl = c } value={this.state.repository.cloneUrl} readOnly />
           </section>
-          <p>{this.state.repository.description}</p>
+          <p className={'github-repository-description'}>{this.state.repository.description}</p>
         </section>
       )} />
     );

@@ -14,27 +14,28 @@ class Store extends EventEmitter {
   constructor() {
     super();
     this.state = {
-      repositories: null
+      clients: null
     };
     this.getState = () => ({
-      repositories: this.getRepositories()
+      clients: this.getClients()
     });
-    this.getRepositories = () => this.state.repositories;
+    this.getClients = () => this.state.clients;
     this.action = this.action.bind(this);
-    this.setRepositoriesData = this.setRepositoriesData.bind(this);
+    this.setPastClientsData = this.setPastClientsData.bind(this);
   }
-  setRepositoriesData() {
+  setPastClientsData() {
     request
-      .get('/api/data/github/repositories')
+      .get('/api/data/clients')
       .end((err, res) => {
-        this.state.repositories = res.body;
+        res.body.sort(sortByOrderValue).reverse();
+        this.state.clients = res.body;
         this.emit('change');
     });
   }
   action({ type = null, payload = null }) {
     switch (type) {
-      case actions.SET_REPOSITORIES_DATA:
-        this.setRepositoriesData(payload);
+      case actions.SET_PAST_CLIENTS_DATA:
+        this.setPastClientsData(payload);
         break;
     }
   }
@@ -43,3 +44,5 @@ class Store extends EventEmitter {
 const store = new Store();
 dispatcher.register(store.action);
 export default store;
+
+const sortByOrderValue = (a, b) => parseInt(a.order) - parseInt(b.order);
