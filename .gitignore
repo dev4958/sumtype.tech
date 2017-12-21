@@ -58,7 +58,7 @@ typings/
 .env
 
 # Deployment folder content
-deploy/**
+deploy
 
 # Image content
 app/assets/**
