@@ -145,7 +145,7 @@ export default class PortfolioHeader extends React.Component {
                         <a className={'linkedin-icon-link'} alt={'Link to my LinkedIn account.'} rel={'noopener'} href={'https://linkedin.com/in/sumtype'} target={'_blank'}>
                           <LinkedinIcon />
                         </a>
-                        <a className={'github-icon-link'} alt={'Link to my GitHub account.'} rel={'noopener'} href={'https://github.com/dev4958'} target={'_blank'}>
+                        <a className={'github-icon-link'} alt={'Link to my GitHub account.'} rel={'noopener'} href={'https://github.com/sumtype'} target={'_blank'}>
                           <GithubIcon />
                         </a>
                         <a className={'npm-icon-link'} alt={'Link to my NPM account.'} rel={'noopener'} href={'https://www.npmjs.com/~sumtype'} target={'_blank'}>
