@@ -22,6 +22,7 @@ import GithubIcon from 'babel-loader!react-svg-loader!../../../../assets/images/
 import DockerIcon from 'babel-loader!react-svg-loader!../../../../assets/images/docker-icon.svg';
 import NpmIcon from 'babel-loader!react-svg-loader!../../../../assets/images/npm-icon.svg';
 import KeybaseIcon from 'babel-loader!react-svg-loader!../../../../assets/images/keybase-icon.svg';
+import codeWarsIcon from '../../../../assets/images/codewars-icon.png';
 import PhoneIcon from 'babel-loader!react-svg-loader!../../../../assets/images/phone-icon.svg';
 import EmailIcon from 'babel-loader!react-svg-loader!../../../../assets/images/email-icon.svg';
 
@@ -63,7 +64,7 @@ export default class PortfolioHeader extends React.Component {
     TweenMax.to([ '#profile-image-desktop', '#profile-image-mobile' ], 0.8, { borderRadius: '50%', ease: Bounce.easeOut, onComplete: () => {
       if (window.innerWidth >= 675) TweenMax.to('.user-profile-container', 1, { opacity: 1, ease: Linear.easeIn });
       TweenMax.to('.user-name', 1, { opacity: 1, ease: Linear.easeIn });
-      TweenMax.to([ '.linkedin-icon-link svg', '.github-icon-link svg', '.npm-icon-link svg', '.dockerhub-icon-link svg', '.keybase-icon-link svg', '.phone-svg', '.email-svg' ], 0, { y: 500 });
+      TweenMax.to([ '.linkedin-icon-link svg', '.github-icon-link svg', '.npm-icon-link svg', '.dockerhub-icon-link svg', '.keybase-icon-link svg', '.codewars-icon-link img', '.phone-svg', '.email-svg' ], 0, { y: 500 });
       setTimeout(() => {
         let jobTitle = new SplitText('.job-title', { type: 'chars' });
         TweenMax.to('.job-title', 0, { opacity: 1 });
@@ -83,10 +84,12 @@ export default class PortfolioHeader extends React.Component {
                 TweenMax.to('.dockerhub-icon-link svg', 0.2, { delay: 0.3, y: 0, ease: Linear.easeOut });
                 TweenMax.to('.keybase-icon-link', 0.1, { delay: 0.4, opacity: 1, ease: Linear.easeOut });
                 TweenMax.to('.keybase-icon-link svg', 0.2, { delay: 0.4, y: 0, ease: Linear.easeOut });
-                TweenMax.to('.phone-svg', 0.1, { delay: 0.5, opacity: 0.2, ease: Linear.easeOut });
-                TweenMax.to('.phone-svg', 0.2, { delay: 0.5, y: 0, ease: Linear.easeOut });
-                TweenMax.to('.email-svg', 0.1, { delay: 0.6, opacity: 0.2, ease: Linear.easeOut });
-                TweenMax.to('.email-svg', 0.2, { delay: 0.6, y: 0, ease: Linear.easeOut });
+                TweenMax.to('.codewars-icon-link', 0.1, { delay: 0.5, opacity: 1, ease: Linear.easeOut });
+                TweenMax.to('.codewars-icon-link img', 0.2, { delay: 0.5, y: 0, ease: Linear.easeOut });
+                TweenMax.to('.phone-svg', 0.1, { delay: 0.6, opacity: 0.2, ease: Linear.easeOut });
+                TweenMax.to('.phone-svg', 0.2, { delay: 0.6, y: 0, ease: Linear.easeOut });
+                TweenMax.to('.email-svg', 0.1, { delay: 0.7, opacity: 0.2, ease: Linear.easeOut });
+                TweenMax.to('.email-svg', 0.2, { delay: 0.7, y: 0, ease: Linear.easeOut });
               }, 250);
             }
           }});
@@ -156,6 +159,9 @@ export default class PortfolioHeader extends React.Component {
                         </a>
                         <a className={'keybase-icon-link'} alt={'Keybase profile.'} rel={'noopener'} href={'https://keybase.io/sumtype'} target={'_blank'}>
                           <KeybaseIcon />
+                        </a>
+                        <a className={'codewars-icon-link'} alt={'CodeWars profile.'} rel={'noopener'} href={'https://codewars.com/users/sumtype'} target={'_blank'}>
+                          <img alt={'Codewars icon.'} width={16} height={16} src={codeWarsIcon} className={'codewars-icon'} />
                         </a>
                         <a href={'tel:+19177027580'} alt={'Contact telephone number.'}>
                           <PhoneIcon onMouseOver={this.showPhoneNumber} onMouseOut={this.hidePhoneNumber} />

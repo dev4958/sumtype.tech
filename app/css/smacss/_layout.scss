@@ -50,12 +50,16 @@
     }
   }
   .icon-row {
-    svg {
+    svg, img {
       padding: 10px;
       padding-left: 0px;
       opacity: 0.2;
       transition: 0.5s all;
       cursor: pointer;
+    }
+    img {
+      width: 16px;
+      height: 16px;
     }
     .phone-svg, .email-svg {
       opacity: 0;
@@ -136,7 +140,7 @@
     display: none;
   }
 }
-.linkedin-icon-link, .github-icon-link, .npm-icon-link, .dockerhub-icon-link, .keybase-icon-link, .phone-svg, .email-svg {
+.linkedin-icon-link, .github-icon-link, .npm-icon-link, .dockerhub-icon-link, .keybase-icon-link, .codewars-icon-link, .phone-svg, .email-svg {
   opacity: 0;
 }
 .job-title {
